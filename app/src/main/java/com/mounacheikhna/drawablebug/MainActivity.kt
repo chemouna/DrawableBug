@@ -7,6 +7,8 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
+    var counter = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,7 +24,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button).setOnClickListener({
             val actionView = menu?.findItem(R.id.save_item)?.actionView
             val doneButton = actionView!!.findViewById<Button>(R.id.done_button)
-            doneButton.isEnabled = !doneButton.isEnabled
+            //doneButton.isEnabled = !doneButton.isEnabled
+            counter ++
+            if(counter in 7..11){
+                doneButton.isEnabled = !doneButton.isEnabled
+            } else doneButton.isEnabled = counter !in 12..16
         })
         return super.onPrepareOptionsMenu(menu)
     }
