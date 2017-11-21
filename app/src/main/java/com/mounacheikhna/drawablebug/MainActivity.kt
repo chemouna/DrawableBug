@@ -3,6 +3,7 @@ package com.mounacheikhna.drawablebug
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,4 +18,12 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        findViewById<Button>(R.id.button).setOnClickListener({
+            val actionView = menu?.findItem(R.id.save_item)?.actionView
+            val doneButton = actionView!!.findViewById<Button>(R.id.done_button)
+            doneButton.isEnabled = !doneButton.isEnabled
+        })
+        return super.onPrepareOptionsMenu(menu)
+    }
 }
