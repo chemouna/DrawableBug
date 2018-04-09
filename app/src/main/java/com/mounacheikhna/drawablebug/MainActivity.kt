@@ -2,6 +2,7 @@ package com.mounacheikhna.drawablebug
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.widget.Button
 
@@ -24,12 +25,20 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button).setOnClickListener({
             val actionView = menu?.findItem(R.id.save_item)?.actionView
             val doneButton = actionView!!.findViewById<Button>(R.id.done_button)
-            //doneButton.isEnabled = !doneButton.isEnabled
+
+            if(counter % 2 == 0) {
+                doneButton.isEnabled = true
+                doneButton.setOnClickListener({
+                    Log.d("TEST", "TEST")
+                })
+            }
+            else {
+                doneButton.isEnabled = false
+            }
             counter ++
-            if(counter in 7..11){
-                doneButton.isEnabled = !doneButton.isEnabled
-            } else doneButton.isEnabled = counter !in 12..16
+
         })
         return super.onPrepareOptionsMenu(menu)
     }
+
 }
